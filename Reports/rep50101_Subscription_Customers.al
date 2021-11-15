@@ -1,80 +1,57 @@
 report 50101 "CSD Subscription Customer"
 {
-    Caption='Subscription Customer';
-    DefaultLayout=RDLC;
-    RDLCLayout= './Reports/SubScriptionCustomers.rdl';
-    WordLayout= 'layout/MyWordLayout.docx';
+    Caption = 'Subscription Customer';
+    DefaultLayout = RDLC;
+    RDLCLayout = './Reports/SubScriptionCustomers.rdl';
+    WordLayout = 'layout/MyWordLayout.docx';
     UsageCategory = Administration;
     ApplicationArea = All;
-    
+
     dataset
     {
-        dataitem(Customer;Customer)
+        dataitem(Customer; Customer)
         {
             DataItemTableView = where("CSD Subscription Customer" = const(true));
-            RequestFilterFields="No.";
-            column(No_;"No.")
+            RequestFilterFields = "No.";
+            column(No_; "No.")
             {
-                IncludeCaption=true;
+                IncludeCaption = true;
             }
-            column(Name;Name)
+            column(Name; Name)
             {
-                IncludeCaption=true;
+                IncludeCaption = true;
             }
-            column(City;City)
+            column(City; City)
             {
-                IncludeCaption=true;
+                IncludeCaption = true;
             }
-            column(Last_Date_Modified;"Last Date Modified")
+            column(Last_Date_Modified; "Last Date Modified")
             {
-                IncludeCaption=true;
+                IncludeCaption = true;
             }
-            column(Balance__LCY_;"Balance (LCY)")
+            column(Balance__LCY_; "Balance (LCY)")
             {
-                IncludeCaption=true;
+                IncludeCaption = true;
             }
-            
+
         }
-        dataitem("Company Information";"Company Information")
+        dataitem("Company Information"; "Company Information")
         {
-            column(Picture;Picture)
+            column(Picture; Picture)
             {
-                IncludeCaption=true;
+                IncludeCaption = true;
             }
-            column()
+            column(CompanyName; COMPANYNAME)
+            {
+
+            }
         }
     }
-    
-    requestpage
+    labels
     {
-        layout
-        {
-            area(Content)
-            {
-                group(GroupName)
-                {
-                    field(Name; SourceExpression)
-                    {
-                        ApplicationArea = All;
-                        
-                    }
-                }
-            }
-        }
-    
-        actions
-        {
-            area(processing)
-            {
-                action(ActionName)
-                {
-                    ApplicationArea = All;
-                    
-                }
-            }
-        }
+        ReportNameCap = 'Customer List';
+        TotalCap = 'Total';
+        OfCap = ' of ';
+        PageNoCap = 'Page No';
     }
-    
-    var
-        myInt: Integer;
 }
